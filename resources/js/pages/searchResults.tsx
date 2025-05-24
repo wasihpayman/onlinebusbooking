@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Bus, Clock, MapPin, Users, Star, ChevronLeft, Calendar, Search } from 'lucide-react';
-import { formatCurrency, formatTime, formatDate } from '../utils/dateUtils';
+import { formatCurrency, formatTime, formatDate } from '../hooks/dateUtils';
 import Loading from '../components/Loading';
 import scheduleService from '../services/scheduleService';
 
