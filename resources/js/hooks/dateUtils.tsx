@@ -14,4 +14,12 @@ export const formatCurrency = (amount: number): string => {
     const mins = minutes % 60;
     return `${hours} ساعت و ${mins} دقیقه`;
   };
-  
+  export const formatTime = (date: Date): string => {
+    const options: Intl.DateTimeFormatOptions = {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+        timeZone: 'Asia/Kabul'
+    };
+    return date.toLocaleTimeString('fa-IR', options);
+  }

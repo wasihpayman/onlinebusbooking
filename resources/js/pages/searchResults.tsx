@@ -87,7 +87,7 @@ const SearchResultsPage = ({ searchParams, onBack, onSelectSchedule }: { searchP
                 {route?.origin_city?.name} به {route?.destination_city?.name}
               </h1>
               <p className="text-gray-600">
-                {formatDate(searchParams.departure_date)} - {searchParams.passengers} مسافر
+                {formatDate(new Date(searchParams.departure_date))} - {searchParams.passengers} مسافر
               </p>
             </div>
             <div className="text-left">
@@ -188,7 +188,7 @@ const ScheduleCard = ({ schedule, passengers, onSelect }: { schedule: Schedule; 
             <div className="flex items-center justify-between">
               <div className="text-center">
                 <p className="text-2xl font-bold text-gray-800">
-                  {formatTime(schedule.departure_time)}
+                  {formatTime(new Date(schedule.departure_time))}
                 </p>
                 <p className="text-sm text-gray-600">
                   {schedule.route?.origin_city?.name}
@@ -204,13 +204,13 @@ const ScheduleCard = ({ schedule, passengers, onSelect }: { schedule: Schedule; 
                   <div className="flex-1 border-t-2 border-dashed border-gray-300"></div>
                 </div>
                 <p className="text-center text-sm text-gray-500 mt-1">
-                  {Math.floor(schedule.route?.duration_minutes / 60)} ساعت
+                  {Math.floor((schedule.route?.duration_minutes ?? 0) / 60)} ساعت
                 </p>
               </div>
               
               <div className="text-center">
                 <p className="text-2xl font-bold text-gray-800">
-                  {formatTime(schedule.arrival_time)}
+                  {formatTime(new Date(schedule.arrival_time))}
                 </p>
                 <p className="text-sm text-gray-600">
                   {schedule.route?.destination_city?.name}
@@ -487,7 +487,7 @@ export default function App() {
       {currentPage === 'home' && <BusBookingHome />}
       {currentPage === 'search-results' && (
         <SearchResultsPage 
-          searchParams={searchParams}
+          searchParams={searchParams as unknown as SearchParams}
           onBack={handleBackToHome}
           onSelectSchedule={handleSelectSchedule}
         />
