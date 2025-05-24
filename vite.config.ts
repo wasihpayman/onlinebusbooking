@@ -12,7 +12,10 @@ export default defineConfig({
             refresh: true,
         }),
         react(),
-        tailwindcss(),
+        tailwindcss({
+            config: './tailwind.config.js',
+            oxide: false, // Disable Oxide engine to prevent native addon issues
+        }),
     ],
     esbuild: {
         jsx: 'automatic',
